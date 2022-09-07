@@ -1,5 +1,7 @@
 const main = document.querySelector(".main");
 const content = document.querySelector(".content");
+const display = document.querySelector(".display");
+const numb = document.querySelectorAll(".bottom")
 
 // function row() {
 //     for (let i = 0; i < 3 * 3; i++) {
@@ -15,8 +17,11 @@ const content = document.querySelector(".content");
 // row();
 
 
-
-
+for (let numbs of numb) {
+    numbs.addEventListener("click", e => {
+        display.textContent = numbs.textContent;
+    })
+}
 
 
 const addNum = function (a, b) {
