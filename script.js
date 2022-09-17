@@ -1,3 +1,7 @@
+//  Successfully wasted 1-2 week for this logic
+//  The whole logic was that we did not need to store two different variable but make textOne = textTwo [through for loop, addEventListener ]
+//  I tried to make textTwo from current.textContent [Dump decision need to think more logically and create better problem solving skill]
+
 const main = document.querySelector(".main");
 const content = document.querySelector(".content");
 const display = document.querySelector(".display");
@@ -18,7 +22,7 @@ let sign = "";
 for (let numbs of numb) {
     numbs.addEventListener("click", e => {
         if (textOne.length < 11) {
-            textOne = currentNumberDisplay.textContent += e.target.textContent;
+            textOne = currentNumberDisplay.textContent += e.target.textContent; // for writing number adjacent 
         }
     })
 }
@@ -28,11 +32,10 @@ for (let operators of operator) {
         sign = e.target.textContent;
         currentNumberDisplay.textContent += ` ${sign} `;
         previousNumberDisplay.textContent = currentNumberDisplay.textContent;
-        textOne = "";
-        console.log(textOne + " " + sign);
-        currentNumberDisplay.textContent = "";
+        textTwo = textOne;
+        // textOne = "";
+        currentNumberDisplay.textContent = "";                                  // clear the current number
     })
-
 }
 
 clear.addEventListener("click", e => {
@@ -41,6 +44,16 @@ clear.addEventListener("click", e => {
     sign.textContent = "";
 })
 
+const callLogic = function () {
+    textOne;
+    textTwo;
+    if (sign === "+") {
+
+        console.log(textTwo);
+        console.log(textOne);
+        console.log(+textOne + +textTwo);
+    }
+}
 
 
 const addNum = function (a, b) {
@@ -53,11 +66,6 @@ equal.addEventListener("click", e => {
     callLogic();
 })
 
-const callLogic = function (operator) {
-    if (sign === "+") {
-        console.log("added dude");
-    }
-}
 
 
 
