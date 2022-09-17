@@ -7,9 +7,10 @@
 
 .main {
     display: flex;
-    border: 0.5px solid rgb(8, 2, 2);
+    border: 5px solid rgb(8, 2, 2);
     flex-direction: column;
     align-items: center;
+    padding: 10px;
 }
 
 .content {
@@ -20,7 +21,13 @@
 }
 
 .display {
-    background-color: rgb(221, 143, 143);
+    /* background-color: rgb(221, 143, 143); */
+    background-color: rgb(233, 217, 217);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    flex-grow: 1;
+    padding: 0px !important;
 }
 
 .sectionOne,
@@ -29,16 +36,15 @@
 .sectionFour,
 .sectionFive {
     display: flex;
-    flex-direction: row;
-    /* justify-content: space-around; */
 }
 
-.sectionOne>button,
+
 .sectionOne>div,
 .sectionTwo>div,
 .sectionThree>div,
-.sectionFour>div {
-    width: 50px;
+.sectionFour>div,
+.sectionFive>div {
+    width: 43px;
     border: 1px solid goldenrod;
     padding: 40px;
 }
@@ -54,14 +60,23 @@
     border: 1px solid goldenrod;
 }
 
-.display {
-    display: flex;
-    flex-grow: 1;
-    /* height: 40px; */
-}
+.display {}
 
 .clear {
     /* padding-bottom: 100px; */
     padding-left: 20px;
     padding-top: 5px;
+}
+
+.sectionFive {
+    height: 150px;
+}
+
+.previousNumberDisplay {
+    font-size: 40px;
+}
+
+.currentNumberDisplay {
+    /* background-color: rebeccapurple; */
+    padding-top: 40px;
 }
