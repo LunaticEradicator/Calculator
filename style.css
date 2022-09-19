@@ -1,13 +1,17 @@
 * {
-    /* padding: 0px;
-    margin: 0px; */
     font-size: 60px;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    /* background-color: rgb(3, 0, 0); */
+}
+
+h1 {
+    margin: 20px;
+    color: darkblue;
 }
 
 .main {
     display: flex;
-    border: 5px solid rgb(8, 2, 2);
+    /* border: 5px solid rgb(8, 2, 2); */
     flex-direction: column;
     align-items: center;
     padding: 10px;
@@ -16,26 +20,30 @@
 .content {
     width: 500px;
     padding: 10px;
-    border: 1px solid goldenrod;
+    border: 3px solid goldenrod;
+    border-radius: 10px;
+    /* background-color: white !important; */
 
 }
 
-.display {
-    /* background-color: rgb(221, 143, 143); */
-    background-color: rgb(233, 217, 217);
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    flex-grow: 1;
-    padding: 0px !important;
+/* .top {
+    background-color: white !important;
 }
+
+.bottom {
+    background-color: white !important;
+}
+
+ */
 
 .sectionOne,
 .sectionTwo,
 .sectionThree,
 .sectionFour,
-.sectionFive {
+.sectionFive,
+.sectionSix {
     display: flex;
+    /* border: 1px solid goldenrod; */
 }
 
 
@@ -43,12 +51,30 @@
 .sectionTwo>div,
 .sectionThree>div,
 .sectionFour>div,
-.sectionFive>div {
-    width: 43px;
+.sectionFive>div,
+.sectionSix>div {
     border: 1px solid goldenrod;
-    padding: 40px;
+    padding: 20px;
+    text-align: center;
 }
 
+.sectionOne>div,
+.sectionTwo>div,
+.sectionThree>div,
+.sectionFour>div,
+.sectionSix>div {
+    flex-grow: 1;
+    width: 43px;
+}
+
+.display {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    flex-grow: 1;
+    padding: 0px !important;
+    background-color: rgb(231, 190, 190) !important;
+}
 
 .top {
     margin-top: 5px;
@@ -60,10 +86,7 @@
     border: 1px solid goldenrod;
 }
 
-.display {}
-
 .clear {
-    /* padding-bottom: 100px; */
     padding-left: 20px;
     padding-top: 5px;
 }
@@ -74,9 +97,23 @@
 
 .previousNumberDisplay {
     font-size: 40px;
+    padding-right: 5px;
 }
 
 .currentNumberDisplay {
-    /* background-color: rebeccapurple; */
-    padding-top: 40px;
+    padding-right: 5px;
+    margin-top: 80px;
+}
+
+.operator,
+.clear,
+.equal {
+    background-color: silver;
+}
+
+.backspace {
+    width: 83.25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
