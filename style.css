@@ -1,5 +1,5 @@
 * {
-    font-size: 60px;
+    font-size: 50px;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     /* background-color: rgb(3, 0, 0); */
 }
@@ -43,7 +43,6 @@ h1 {
 .sectionFive,
 .sectionSix {
     display: flex;
-    /* border: 1px solid goldenrod; */
 }
 
 
@@ -65,13 +64,14 @@ h1 {
 .sectionSix>div {
     flex-grow: 1;
     width: 43px;
+    /* border-radius: 20px; */
 }
 
 .display {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
-    flex-grow: 1;
+    width: 75%;
     padding: 0px !important;
     background-color: rgb(231, 190, 190) !important;
 }
@@ -96,13 +96,15 @@ h1 {
 }
 
 .previousNumberDisplay {
-    font-size: 40px;
+    font-size: 22px;
     padding-right: 5px;
+    display: flex;
+    flex-wrap: wrap-reverse;
 }
 
 .currentNumberDisplay {
     padding-right: 5px;
-    margin-top: 80px;
+    margin-top: 95px;
 }
 
 .operator,
@@ -116,4 +118,27 @@ h1 {
     display: flex;
     justify-content: center;
     align-items: center;
+
+}
+
+.backspaceImg {
+    width: 200%;
+    height: 100%;
+    /* background-color: red; */
+}
+
+.resultSize {
+    font-size: 38px;
+}
+
+button {
+    border: none;
+    background-color: white;
+}
+
+.operator>button,
+.clear>button,
+.equal>button {
+    border: none;
+    background-color: silver;
 }

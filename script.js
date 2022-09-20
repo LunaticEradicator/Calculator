@@ -14,6 +14,7 @@ const operator = document.querySelectorAll(".operator")
 const currentNumberDisplay = document.querySelector(".currentNumberDisplay");
 const previousNumberDisplay = document.querySelector(".previousNumberDisplay");
 
+const flipSign = document.querySelector(".flipSign");
 let textOne = "";
 let textTwo = "";
 let sign = "";
@@ -23,42 +24,61 @@ operatorButtonPressed();
 equalButton();
 clearButton();
 backSpaceButton();
+flipSignButton();
+
 
 
 function numbButtonPressed() {
     for (let numbs of numb) {
         numbs.addEventListener("click", e => {
-            if (textOne.length < 11) {
-                textOne += e.target.textContent;           // for writing number adjacent 
+            if (textOne.length < 13) {
+                textOne += e.target.textContent;            // for writing number adjacent 
                 currentNumberDisplay.textContent = textOne;
+                console.log(`This is TextOne ${textOne}`);
             }
         })
     }
 }
 
-// function numbButtonErase() {
-//     for (let numbs of numb) {
-//         numbs.addEventListener("click", e => {
-//             textOne -= e.target.textContent;           // for writing number adjacent 
-//             // currentNumberDisplay.textContent = textOne;
-//         })
-//     }
-// }
+function flipSignButton() {
+    flipSign.addEventListener("click", e => {
+        console.log("flipped");
+        if (textOne > 0) {
+            currentNumberDisplay.textContent = -(currentNumberDisplay.textContent);
+            textOne = currentNumberDisplay.textContent;
+        }
+        else {
+            currentNumberDisplay.textContent = -(currentNumberDisplay.textContent);
+            textOne = currentNumberDisplay.textContent;
+        }
+        console.log(textOne);
 
-
+    })
+}
+let isSigned = false;
 function operatorButtonPressed() {
     for (let operators of operator) {
         operators.addEventListener("click", e => {
-            sign = e.target.textContent;
-            currentNumberDisplay.textContent += ` ${sign} `;
-            previousNumberDisplay.textContent = currentNumberDisplay.textContent;
-            textTwo = textOne;
-            textOne = "";
-            currentNumberDisplay.textContent = "";                                  // clear the current number
-            currentNumberDisplay.style.marginTop = "40px";                          // so currentNumber won't change position
+            if (!isSigned) {
+                isSigned = true;                                                       // disable selecting multiple sign
+                sign = e.target.textContent;
+                currentNumberDisplay.textContent += ` ${sign} `;
+                console.log(` ${sign} `);
+                previousNumberDisplay.textContent = currentNumberDisplay.textContent;
+                textTwo = textOne;
+                textOne = "";
+                currentNumberDisplay.textContent = "";                                  // clear the current number
+                currentNumberDisplay.style.marginTop = "70px";                          // so currentNumber won't change position
+                // operators.classList.remove("operator");
+            }
         })
     }
 }
+
+// function disableButton() {
+//     operator.disabled = true;
+//     console.log("Disabled")
+// }
 
 function clearButton() {
     clear.addEventListener("click", e => {
@@ -72,6 +92,17 @@ function backSpaceButton() {
     })
 }
 
+function clearFunction() {
+    textOne = "";
+    textTwo = "";
+    sign.textContent = "";
+    currentNumberDisplay.textContent = 0;
+    previousNumberDisplay.textContent = "";
+    currentNumberDisplay.style.marginTop = "95px";
+    currentNumberDisplay.classList.remove("resultSize");
+    isSigned = false;
+}
+
 function backspaceFunction() {
     textOne = textOne.slice(0, -1);
     currentNumberDisplay.textContent = textOne;
@@ -79,17 +110,11 @@ function backspaceFunction() {
     console.log("Cleared");
 }
 
-function clearFunction() {
-    textOne = "";
-    textTwo = "";
-    sign.textContent = "";
-    currentNumberDisplay.textContent = "";
-    previousNumberDisplay.textContent = "";
-    currentNumberDisplay.style.marginTop = "80px";
-}
 
 function equalButton() {
     equal.addEventListener("click", e => {
+        isSigned = false;
+        currentNumberDisplay.classList.add("resultSize");
         if (sign === "+") {
             addNum();
         }
@@ -108,19 +133,11 @@ function equalButton() {
 
 
 const addNum = function () {
-    result = +textOne + +textTwo;                                          // + before variable convert string to a integer
-    if (textOne.length + textTwo.length < 11) {
-        previousNumberDisplay.textContent = `${textTwo} + ${textOne}`;
-        currentNumberDisplay.textContent = result;
-        textOne = "";
-        currentNumberDisplay.style.marginTop = "40px";
-    }
-    else {
-        result = result.toFixed(4);
-        previousNumberDisplay.textContent = ``;
-        currentNumberDisplay.textContent = result;
-        textOne = "";
-    }
+    result = +textOne + +textTwo;
+    previousNumberDisplay.textContent = `${textTwo} + ${textOne}`;
+    currentNumberDisplay.textContent = result;
+    textOne = "";                                                               // erase the result value from text so that we can continuously add number
+    currentNumberDisplay.style.marginTop = "80px";
 }
 
 const multipleNum = function () {
@@ -128,7 +145,7 @@ const multipleNum = function () {
     previousNumberDisplay.textContent = `${textTwo} * ${textOne}`
     currentNumberDisplay.textContent = result;
     textOne = "";
-    currentNumberDisplay.style.marginTop = "40px";
+    currentNumberDisplay.style.marginTop = "80px";
 }
 
 const subtractNum = function () {
@@ -137,15 +154,30 @@ const subtractNum = function () {
     previousNumberDisplay.textContent = `${textTwo} - ${textOne}`
     currentNumberDisplay.textContent = result;
     textOne = "";
-    currentNumberDisplay.style.marginTop = "40px";
+    currentNumberDisplay.style.marginTop = "80px";
 }
 
 const divideNum = function () {
     result = +textTwo / +textOne;
-    result = result.toFixed(9);
+    // result = result.toFixed(9);
     previousNumberDisplay.textContent = `${textTwo} / ${textOne}`;
     currentNumberDisplay.textContent = result;
     textOne = "";
-    currentNumberDisplay.style.marginTop = "40px";
+    currentNumberDisplay.style.marginTop = "80px";
 }
 
+// const addNum = function () {
+//     result = +textOne + +textTwo;                                          // + before variable convert string to a integer
+//     if (textOne.length + textTwo.length < 11) {
+//         previousNumberDisplay.textContent = `${textTwo} + ${textOne}`;
+//         currentNumberDisplay.textContent = result;
+//         textOne = "";
+//         currentNumberDisplay.style.marginTop = "40px";
+//     }
+//     else {
+//         result = result.toFixed(4);
+//         previousNumberDisplay.textContent = ``;
+//         currentNumberDisplay.textContent = result;
+//         textOne = "";
+//     }
+// }
