@@ -15,6 +15,7 @@ const currentNumberDisplay = document.querySelector(".currentNumberDisplay");
 const previousNumberDisplay = document.querySelector(".previousNumberDisplay");
 
 const flipSign = document.querySelector(".flipSign");
+const powerSquare = document.querySelector(".powerSquare");
 let textOne = "";
 let textTwo = "";
 let sign = "";
@@ -25,6 +26,7 @@ equalButton();
 clearButton();
 backSpaceButton();
 flipSignButton();
+powerButton();
 
 
 
@@ -34,7 +36,8 @@ function numbButtonPressed() {
             if (textOne.length < 13) {
                 textOne += e.target.textContent;            // for writing number adjacent 
                 currentNumberDisplay.textContent = textOne;
-                console.log(`This is TextOne ${textOne}`);
+                // console.log(`This is TextOne ${textOne}`);
+                isSigned = false;
             }
         })
     }
@@ -55,12 +58,14 @@ function flipSignButton() {
 
     })
 }
+
 let isSigned = false;
 function operatorButtonPressed() {
     for (let operators of operator) {
         operators.addEventListener("click", e => {
             if (!isSigned) {
                 isSigned = true;                                                       // disable selecting multiple sign
+                // console.log(sign)
                 sign = e.target.textContent;
                 currentNumberDisplay.textContent += ` ${sign} `;
                 console.log(` ${sign} `);
@@ -75,10 +80,6 @@ function operatorButtonPressed() {
     }
 }
 
-// function disableButton() {
-//     operator.disabled = true;
-//     console.log("Disabled")
-// }
 
 function clearButton() {
     clear.addEventListener("click", e => {
@@ -110,25 +111,45 @@ function backspaceFunction() {
     console.log("Cleared");
 }
 
+const isResult = false;
+
 
 function equalButton() {
     equal.addEventListener("click", e => {
-        isSigned = false;
-        currentNumberDisplay.classList.add("resultSize");
-        if (sign === "+") {
-            addNum();
+        if (!isResult) {
+            isSigned = false;
+            currentNumberDisplay.classList.add("resultSize");
+            if (sign === "+") {
+                addNum();
+            }
+            if (sign === "*") {
+                multipleNum();
+            }
+            if (sign === "-") {
+                subtractNum();
+            }
+            if (sign === "/") {
+                divideNum();
+            }
         }
-        if (sign === "*") {
-            multipleNum();
-        }
-        if (sign === "-") {
-            subtractNum();
-        }
-        if (sign === "/") {
-            divideNum();
+
+        for (let operators of operator) {
+            operators.addEventListener("click", e => {
+                textTwo = result;
+                const newResult = textTwo + textOne;
+                previousNumberDisplay.textContent = textTwo;
+                currentNumberDisplay.textContent = textOne;
+                currentNumberDisplay.textContent = newResult;
+                console.log(`This is the result ${newResult}`);
+            })
         }
     })
+}
 
+function powerButton() {
+    powerSquare.addEventListener("click", e => {
+        powerFunction();
+    })
 }
 
 
@@ -165,6 +186,15 @@ const divideNum = function () {
     textOne = "";
     currentNumberDisplay.style.marginTop = "80px";
 }
+
+function powerFunction() {
+    console.log(textTwo);
+    result = textTwo * textTwo;
+    currentNumberDisplay.textContent = result;
+    previousNumberDisplay.textContent = `Sqr(${(textTwo)})`;
+}
+
+
 
 // const addNum = function () {
 //     result = +textOne + +textTwo;                                          // + before variable convert string to a integer

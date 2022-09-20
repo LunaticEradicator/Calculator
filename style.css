@@ -142,3 +142,7 @@ button {
     border: none;
     background-color: silver;
 }
+
+sup {
+    font-size: 30px;
+}
