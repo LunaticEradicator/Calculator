@@ -23,7 +23,7 @@ let textThree = "";
 let textFour = "";
 let sign = "";
 let result = "";
-let continuosResult = "";
+let resultTwo = "";
 
 
 numbButtonPressed();
@@ -47,9 +47,9 @@ function numbButtonPressed() {
     }
 }
 
-let showed = "";
+
 let isSigned = false;
-let isResult = false;
+
 
 // Fix Multi and divide
 function operatorButtonPressed() {
@@ -62,28 +62,18 @@ function operatorButtonPressed() {
                 previousNumberDisplay.textContent = currentNumberDisplay.textContent;
                 currentNumberDisplay.textContent = "";                                  // clear the current number
                 currentNumberDisplay.style.marginTop = "70px";                          // so current Number won't change position
+
+                // Clears After an operator is selected
                 textTwo = textOne;
                 textOne = "";
+                // Big Tweaks Needed
 
-                // && textFour === "" && textThree === ""x
-                if (result && !continuosResult) {
-                    console.log(`---------------- Calculating with equalButton -------------------}`);
-                    textTwo = textOne;
-                    textOne = "";
-                }
 
-                else {
-                    if (sign === "+") {
-                        CalculatingResultEndToEndSum();
-                    }
-                    if (sign === "-") {
-                        CalculatingResultEndToEndSubtract();
-                    }
-                    if (sign === "*") {
-                        CalculatingResultEndToEndMultiple();
-                    }
-                    if (sign === "/") {
-                        CalculatingResultEndToEndDivide();
+
+                if (result === false && sign === "+", "-", "*", "/") {
+                    console.log(`Sign is :${sign}`);
+                    for (let numbs of numb) {
+                        numbs.addEventListener("click", CalculatingWithoutEqual);
                     }
                 }
             }
@@ -91,133 +81,50 @@ function operatorButtonPressed() {
     }
 }
 
-function CalculatingResultEndToEndSum() {
-    for (let numbs of numb) {
-        numbs.addEventListener("click", e => {
-            continuosResult = +textTwo + +textOne;
-            textThree = textOne;
-            textFour = textTwo;
-            for (let operators of operator) {
-                operators.addEventListener("click", e => {
-                    console.log(`---------------- Adding Without EqualButton -------------------}`);
-                    previousNumberDisplay.textContent = ` ${textFour} ${sign} ${textThree}`
-                    currentNumberDisplay.textContent = continuosResult;
-                    console.log(`This is ContinuosResult ${continuosResult}`);
-                    console.log(`This is TextThree ${textThree}`);
-                    console.log(`This is TextFour ${textFour}`);
-                    for (let operators of operator) {
-                        operators.addEventListener("click", e => {
-                            console.log(`This is Continuos Result Inside ${continuosResult}`);
-                            textTwo = continuosResult;
-                            continuosResult = +textTwo + +textOne;
-                            // previousNumberDisplay.textContent = textTwo + sign;
-                            previousNumberDisplay.textContent = `${textTwo}  ${sign}`;
-                            currentNumberDisplay.textContent = continuosResult;
-                            console.log(`-------------This is Continuos Result Inside Inside ${continuosResult}----------------`);
-                            console.log(`This is TextOne${textOne}`);
-                            console.log(`This is TextTwo${textTwo}`);
-                        })
-                    }
-                })
-            }
-        })
-    }
-}
+function CalculatingWithoutEqual() {
+    console.log(`---------------- Number for NotEqualButton  -------------------}`);
+    textThree = textOne;
+    textFour = textTwo;
+    console.log(`This is ContinuosResult ${resultTwo}`);
+    console.log(`This is TextThree ${textThree}`);
+    console.log(`This is TextFour ${textFour}`);
 
-function CalculatingResultEndToEndSubtract() {
-    for (let numbs of numb) {
-        numbs.addEventListener("click", e => {
-            continuosResult = +textTwo - +textOne;
-            textThree = textOne;
-            textFour = textTwo;
-            for (let operators of operator) {
-                operators.addEventListener("click", e => {
-                    console.log(`---------------- Adding Without EqualButton -------------------}`);
-                    previousNumberDisplay.textContent = ` ${textFour} ${sign} ${textThree}`
-                    currentNumberDisplay.textContent = continuosResult;
-                    console.log(`This is ContinuosResult ${continuosResult}`);
-                    console.log(`This is TextThree ${textThree}`);
-                    console.log(`This is TextFour ${textFour}`);
-                    for (let operators of operator) {
-                        operators.addEventListener("click", e => {
-                            console.log(`This is Continuos Result Inside ${continuosResult}`);
-                            textTwo = continuosResult;
-                            continuosResult = +textTwo - +textOne;
-                            // previousNumberDisplay.textContent = textTwo + sign;
-                            previousNumberDisplay.textContent = `${textTwo}  ${sign}`;
-                            currentNumberDisplay.textContent = continuosResult;
-                            console.log(`-------------This is Continuos Result Inside Inside ${continuosResult}----------------`);
-                            console.log(`This is TextOne${textOne}`);
-                            console.log(`This is TextTwo${textTwo}`);
-                        })
-                    }
-                })
+    for (let operators of operator) {
+        operators.addEventListener("click", e => {
+            if (sign === "+") {
+                console.log(`---------------- Adding Without EqualButton -------------------}`);
+                resultTwo = +textFour + +textThree;
+                previousNumberDisplay.textContent = ` ${textFour} ${sign} ${textThree}`
+                currentNumberDisplay.textContent = resultTwo;
+                console.log(`This is ContinuosResult ${resultTwo}`);
             }
-        })
-    }
-}
-
-function CalculatingResultEndToEndMultiple() {
-    for (let numbs of numb) {
-        numbs.addEventListener("click", e => {
-            continuosResult = +textTwo * +textOne;
-            textThree = textOne;
-            textFour = textTwo;
-            for (let operators of operator) {
-                operators.addEventListener("click", e => {
-                    console.log(`---------------- Adding Without EqualButton -------------------}`);
-                    previousNumberDisplay.textContent = ` ${textFour} ${sign} ${textThree}`
-                    currentNumberDisplay.textContent = continuosResult;
-                    console.log(`This is TextThree ${textThree}`);
-                    console.log(`This is TextFour ${textFour}`);
-                    console.log(`This is ContinuosResult ${continuosResult}`);
-                    for (let operators of operator) {
-                        operators.addEventListener("click", e => {
-                            textTwo = continuosResult;
-                            continuosResult = +textTwo * +textOne;
-                            console.log(`textTwo ${textTwo}`);
-                            console.log(`This is Continuos Result Inside ${continuosResult}`);
-                            // previousNumberDisplay.textContent = textTwo + sign;
-                            previousNumberDisplay.textContent = `${textTwo}  ${sign}`;
-                            currentNumberDisplay.textContent = textTwo;
-                            console.log(`-------------This is Continuos Result Inside Inside ${continuosResult}----------------`);
-                            console.log(`This is TextOne${textOne}`);
-                            console.log(`This is TextTwo${textTwo}`);
-                        })
-                    }
-                })
+            if (sign === "-") {
+                console.log(`---------------- Subtracting Without EqualButton -------------------}`);
+                resultTwo = +textFour - +textThree;
+                previousNumberDisplay.textContent = ` ${textFour} ${sign} ${textThree}`
+                currentNumberDisplay.textContent = resultTwo;
+                console.log(`This is ContinuosResult ${resultTwo}`);
             }
-        })
-    }
-}
-
-function CalculatingResultEndToEndDivide() {
-    for (let numbs of numb) {
-        numbs.addEventListener("click", e => {
-            continuosResult = +textTwo / +textOne;
-            textThree = textOne;
-            textFour = textTwo;
+            if (sign === "*") {
+                console.log(`---------------- Multiplying Without EqualButton -------------------}`);
+                resultTwo = +textFour * +textThree;
+                previousNumberDisplay.textContent = ` ${textFour} ${sign} ${textThree}`
+                currentNumberDisplay.textContent = resultTwo;
+                console.log(`This is ContinuosResult ${resultTwo}`);
+            }
+            if (sign === "/") {
+                console.log(`---------------- Dividing Without EqualButton -------------------}`);
+                resultTwo = +textFour / +textThree;
+                previousNumberDisplay.textContent = ` ${textFour} ${sign} ${textThree}`
+                currentNumberDisplay.textContent = resultTwo;
+                console.log(`This is ContinuosResult ${resultTwo}`);
+            }
             for (let operators of operator) {
                 operators.addEventListener("click", e => {
-                    console.log(`---------------- Adding Without EqualButton -------------------}`);
-                    previousNumberDisplay.textContent = ` ${textFour} ${sign} ${textThree}`
-                    currentNumberDisplay.textContent = continuosResult;
-                    console.log(`This is ContinuosResult ${continuosResult}`);
-                    console.log(`This is TextThree ${textThree}`);
-                    console.log(`This is TextFour ${textFour}`);
-                    for (let operators of operator) {
-                        operators.addEventListener("click", e => {
-                            console.log(`This is Continuos Result Inside ${continuosResult}`);
-                            textTwo = continuosResult;
-                            continuosResult = +textTwo / +textOne;
-                            // previousNumberDisplay.textContent = textTwo + sign;
-                            previousNumberDisplay.textContent = `${textTwo}  ${sign}`;
-                            currentNumberDisplay.textContent = continuosResult;
-                            console.log(`-------------This is Continuos Result Inside Inside ${continuosResult}----------------`);
-                            console.log(`This is TextOne${textOne}`);
-                            console.log(`This is TextTwo${textTwo}`);
-                        })
-                    }
+                    console.log(`-------------This is Continuos Result Inside Inside ${resultTwo}----------------`);
+                    textTwo = resultTwo;
+                    previousNumberDisplay.textContent = `${textTwo}  ${e.target.textContent}`;
+                    currentNumberDisplay.textContent = "";
                 })
             }
         })
@@ -225,78 +132,6 @@ function CalculatingResultEndToEndDivide() {
 }
 
 
-
-// numbs.addEventListener("click", e => {
-//     continuosResult = +textOne + +textTwo;
-//     textThree = textOne;
-//     textFour = textTwo;
-//     for (let operators of operator) {
-//         operators.addEventListener("click", e => {
-//             console.log(`---------------- Adding Without EqualButton -------------------}`);
-//             previousNumberDisplay.textContent = `${textFour} ${sign} ${textThree}`
-//             currentNumberDisplay.textContent = continuosResult;
-//             console.log(`This is ContinuosResult ${continuosResult}`);
-//             console.log(`This is TextThree ${textThree}`);
-//             console.log(`This is TextFour ${textFour}`);
-//             for (let operators of operator) {
-//                 operators.addEventListener("click", e => {
-//                     console.log(`This is ContinuosResult Inside ${continuosResult}`);
-//                     textTwo = continuosResult;
-//                     continuosResult = textTwo + textOne;
-//                     previousNumberDisplay.textContent = textTwo + sign;
-//                     // previousNumberDisplay.textContent = `${textTwo}  ${sign}`;
-//                     currentNumberDisplay.textContent = continuosResult;
-//                     console.log(`-------------This is ContinuosResult Inside ${continuosResult}----------------`);
-//                     console.log(`This is TextOne${textOne}`);
-//                     console.log(`This is TextTwo${textTwo}`);
-//                 })
-//             }
-//         })
-//     }
-// })
-
-
-
-// function usingMoreThanOneOperator() {
-//     for (let numbs of numb) {
-//         numbs.addEventListener("click", e => {
-//             // if (sign === "+") {
-//             console.log("--------------Pressing operator [First Layer] ---------------")
-//             console.log(`This is TextOne${textOne}`);
-//             console.log(`This is TextTwo${textTwo}`);
-//             textThree = textOne;
-//             textFour = textTwo;
-//             if (textTwo !== result) {
-//                 for (let operators of operator) {
-//                     operators.addEventListener("click", operatorRepeat);
-//                 }
-//             }
-//             else {
-//                 previousNumberDisplay.textContent = textTwo + sign + textOne;
-//                 console.log("-------------- Pressing operator [Third Layer] ---------------")
-//                 result = +textOne + +textTwo;
-//                 currentNumberDisplay.textContent = result;
-//                 for (let operators of operator) {
-//                     operators.removeEventListener("click", operatorRepeat);
-//                 }
-//             }
-//         })
-//     }
-// }
-
-// function operatorRepeat() {
-//     textOne = textThree;
-//     textTwo = textFour;
-//     result = +textTwo + +textOne;
-//     currentNumberDisplay.textContent = result;
-//     currentNumberDisplay.style.marginTop = "70px";
-//     textTwo = result;
-//     textOne = "";
-//     console.log("--------Pressed Operator  [Second Layer]--------");
-//     console.log(`This is TextOne ${textOne}`);
-//     console.log(`This is TextTwo ${textTwo}`);
-//     console.log(`This is result ${result}`);
-// }
 
 function clearButton() {
     clear.addEventListener("click", e => {
@@ -331,7 +166,7 @@ function clearFunction() {
     textFour = "";
     sign = "";
     result = "";
-    continuosResult = "";
+    result = "";
 
     currentNumberDisplay.textContent = 0;
     previousNumberDisplay.textContent = "";
@@ -340,9 +175,10 @@ function clearFunction() {
     isSigned = false;                                                       // enable to select a sign
 
     for (let operators of operator) {
-        operators.removeEventListener("click", addResultEventListener)      //disable the result to be summed when clear is pressed
+        operators.removeEventListener("click", addResultEventListener);     //disable the result to be summed when clear is pressed
     }
 
+    equalButton.disabled = true;
 
     // console.log(`-----------Clear----------------`)
     // console.log(`This is TextOne ${textOne}`)
@@ -351,6 +187,10 @@ function clearFunction() {
     // console.log(`This is sign ${sign}`)
 
     console.clear();
+    console.log(`This is TextOne ${textOne}`)
+    console.log(`This is TextTwo ${textTwo}`)
+    console.log(`This is result ${result}`)
+    console.log(`This is continuosResult ${sign}`)
 }
 
 function backspaceFunction() {
@@ -383,13 +223,24 @@ function equalButton() {
             divideNum();
         }
 
+        // if (continuosResult === true) {
+        //     if (sign === "+", "-", "*", "/") {
+        //         console.log(`222222222222222222Sign is :${sign}222222222222222222222222222222`);
+        //         for (let numbs of numb) {
+        //             numbs.addEventListener("click", CalculatingWithoutEqual);
+        //         }
+        //     }
+        // }
+
+
         // AddingWithOutEqualButton
         for (let operators of operator) {
             console.log(`---------------- Calculating with equalButton [Result + textOne] -------------------}`);
-            operators.addEventListener("click", addResultEventListener)
+            operators.addEventListener("click", addResultEventListener);
+            for (let numbs of numb) {
+                numbs.removeEventListener("click", CalculatingWithoutEqual);
+            }
         }
-
-
 
         // Clear the result when a number is pressed
         for (let numbs of numb) {
@@ -400,9 +251,13 @@ function equalButton() {
 
 function addResultEventListener() {
     textTwo = result;
-    console.log(`This is TextOne ${textOne}`);
-    console.log(`This is TextTwo ${textTwo}`);
-    console.log(`This is result ${result}`);
+    previousNumberDisplay.textContent = ` ${textTwo} ${sign} `
+    currentNumberDisplay.textContent = "";
+    // console.log(`This is TextOne ${textOne}`);
+    // console.log(`This is TextTwo ${textTwo}`);
+    // console.log(`This is result ${result}`);
+    // currentNumberDisplay.style.marginTop = "80px";                          // so current Number won't change position
+
 }
 
 function clearResultEventListener() {
@@ -410,6 +265,8 @@ function clearResultEventListener() {
         operators.removeEventListener("click", addResultEventListener);
     }
     result = "";
+    currentNumberDisplay.style.marginTop = "80px";                          // changed again after clearing
+
     console.log("-------- Clears the result when pressed on a number ---------");
     //     console.log(`This is TextOne ${textOne}`);
     //     console.log(`This is TextTwo ${textTwo}`);
@@ -484,25 +341,197 @@ const powerFunction = function () {
     previousNumberDisplay.textContent = `Sqr(${(textTwo)})`;
 }
 
-// for (let numbs of numb) {
-//     numbs.addEventListener("click", e => {
-//         if (sign === "+") {
-//             console.log("Pressing + than =")
+// function CalculatingResultEndToEndSum() {
+//     // for (let numbs of numb) {
+//     //     numbs.addEventListener("click",)
+//     // }
+//     // continuosResult = "";
+// }
+
+// function CalculatingResultEndToEndSubtract() {
+//     for (let numbs of numb) {
+//         numbs.addEventListener("click", e => {
+//             textThree = textOne;
+//             textFour = textTwo;
+//             console.log(`---------------- Number for NotEqualButton  -------------------}`);
+//             console.log(`This is ContinuosResult ${continuosResult}`);
+//             console.log(`This is TextThree ${textThree}`);
+//             console.log(`This is TextFour ${textFour}`);
+
+//             for (let operators of operator) {
+//                 operators.addEventListener("click", e => {
+//                     console.log(`---------------- Adding WithoutEqualButton -------------------}`);
+//                     continuosResult = +textFour - +textThree;
+//                     previousNumberDisplay.textContent = ` ${textFour} ${sign} ${textThree}`
+//                     currentNumberDisplay.textContent = continuosResult;
+//                     // console.log(`This is ContinuosResult ${continuosResult}`);
+//                     // console.log(`This is TextThree ${textThree}`);
+//                     // console.log(`This is TextFour ${textFour}`);
+
+//                     for (let operators of operator) {
+//                         operators.addEventListener("click", e => {
+//                             sign = "";
+//                             sign = e.target.textContent;
+//                             console.log(`-------------This is Continuos Result Inside Inside ${continuosResult}----------------`);
+//                             if (e.target.textContent === "-") {
+//                                 console.log("NOT hello");
+//                                 textTwo = continuosResult;
+//                                 previousNumberDisplay.textContent = `${textTwo}  ${sign}`;
+//                                 currentNumberDisplay.textContent = continuosResult;
+//                                 // continuosResult = +textFour + +textThree;
+//                                 // console.log(`This is TextOne${textOne}`);
+//                                 // console.log(`This is TextTwo${textTwo}`);
+//                                 // console.log(`This is ContinuosResult ${continuosResult}`);
+
+//                             }
+
+//                         })
+//                     }
+//                 })
+//             }
+
+
+//         })
+//     }
+// }
+
+// function CalculatingResultEndToEndMultiple() {
+//     for (let numbs of numb) {
+//         numbs.addEventListener("click", e => {
+//             continuosResult = +textTwo * +textOne;
+//             textThree = textOne;
+//             textFour = textTwo;
+//             for (let operators of operator) {
+//                 operators.addEventListener("click", e => {
+//                     console.log(`---------------- Adding Without EqualButton -------------------}`);
+//                     previousNumberDisplay.textContent = ` ${textFour} ${sign} ${textThree}`
+//                     currentNumberDisplay.textContent = continuosResult;
+//                     console.log(`This is TextThree ${textThree}`);
+//                     console.log(`This is TextFour ${textFour}`);
+//                     console.log(`This is ContinuosResult ${continuosResult}`);
+//                     for (let operators of operator) {
+//                         operators.addEventListener("click", e => {
+//                             textTwo = continuosResult;
+//                             // continuosResult = +textTwo * +textOne;
+//                             console.log(`textTwo ${textTwo}`);
+//                             console.log(`This is Continuos Result Inside ${continuosResult}`);
+//                             // previousNumberDisplay.textContent = textTwo + sign;
+//                             previousNumberDisplay.textContent = `${textTwo}  ${sign}`;
+//                             currentNumberDisplay.textContent = textTwo;
+//                             console.log(`-------------This is Continuos Result Inside Inside ${continuosResult}----------------`);
+//                             console.log(`This is TextOne${textOne}`);
+//                             console.log(`This is TextTwo${textTwo}`);
+//                         })
+//                     }
+//                 })
+//             }
+//         })
+//     }
+// }
+
+// function CalculatingResultEndToEndDivide() {
+//     for (let numbs of numb) {
+//         numbs.addEventListener("click", e => {
+//             continuosResult = +textTwo / +textOne;
+//             textThree = textOne;
+//             textFour = textTwo;
+//             for (let operators of operator) {
+//                 operators.addEventListener("click", e => {
+//                     console.log(`---------------- Adding Without EqualButton -------------------}`);
+//                     previousNumberDisplay.textContent = ` ${textFour} ${sign} ${textThree}`
+//                     currentNumberDisplay.textContent = continuosResult;
+//                     console.log(`This is ContinuosResult ${continuosResult}`);
+//                     console.log(`This is TextThree ${textThree}`);
+//                     console.log(`This is TextFour ${textFour}`);
+//                     for (let operators of operator) {
+//                         operators.addEventListener("click", e => {
+//                             console.log(`This is Continuos Result Inside ${continuosResult}`);
+//                             textTwo = continuosResult;
+//                             // continuosResult = +textTwo / +textOne;
+//                             // previousNumberDisplay.textContent = textTwo + sign;
+//                             previousNumberDisplay.textContent = `${textTwo}  ${sign}`;
+//                             currentNumberDisplay.textContent = continuosResult;
+//                             console.log(`-------------This is Continuos Result Inside Inside ${continuosResult}----------------`);
+//                             console.log(`This is TextOne${textOne}`);
+//                             console.log(`This is TextTwo${textTwo}`);
+//                         })
+//                     }
+//                 })
+//             }
+//         })
+//     }
+// }
+
+
+
+// numbs.addEventListener("click", e => {
+//     continuosResult = +textOne + +textTwo;
+//     textThree = textOne;
+//     textFour = textTwo;
+//     for (let operators of operator) {
+//         operators.addEventListener("click", e => {
+//             console.log(`---------------- Adding Without EqualButton -------------------}`);
+//             previousNumberDisplay.textContent = `${textFour} ${sign} ${textThree}`
+//             currentNumberDisplay.textContent = continuosResult;
+//             console.log(`This is ContinuosResult ${continuosResult}`);
+//             console.log(`This is TextThree ${textThree}`);
+//             console.log(`This is TextFour ${textFour}`);
+//             for (let operators of operator) {
+//                 operators.addEventListener("click", e => {
+//                     console.log(`This is ContinuosResult Inside ${continuosResult}`);
+//                     textTwo = continuosResult;
+//                     continuosResult = textTwo + textOne;
+//                     previousNumberDisplay.textContent = textTwo + sign;
+//                     // previousNumberDisplay.textContent = `${textTwo}  ${sign}`;
+//                     currentNumberDisplay.textContent = continuosResult;
+//                     console.log(`-------------This is ContinuosResult Inside ${continuosResult}----------------`);
+//                     console.log(`This is TextOne${textOne}`);
+//                     console.log(`This is TextTwo${textTwo}`);
+//                 })
+//             }
+//         })
+//     }
+// })
+
+
+
+// function usingMoreThanOneOperator() {
+//     for (let numbs of numb) {
+//         numbs.addEventListener("click", e => {
+//             // if (sign === "+") {
+//             console.log("--------------Pressing operator [First Layer] ---------------")
 //             console.log(`This is TextOne${textOne}`);
 //             console.log(`This is TextTwo${textTwo}`);
+//             textThree = textOne;
+//             textFour = textTwo;
+//             if (textTwo !== result) {
+//                 for (let operators of operator) {
+//                     operators.addEventListener("click", operatorRepeat);
+//                 }
+//             }
+//             else {
+//                 previousNumberDisplay.textContent = textTwo + sign + textOne;
+//                 console.log("-------------- Pressing operator [Third Layer] ---------------")
+//                 result = +textOne + +textTwo;
+//                 currentNumberDisplay.textContent = result;
+//                 for (let operators of operator) {
+//                     operators.removeEventListener("click", operatorRepeat);
+//                 }
+//             }
+//         })
+//     }
+// }
 
-//             result = +textTwo + +textOne;
-//             previousNumberDisplay.textContent = `${textTwo} ${sign} ${textOne}`;
-//             currentNumberDisplay.textContent = result;
-
-//             // for (let operators of operator) {
-//             //     operators.addEventListener("click", e => {
-//             //         console.log("Pressing + than = continuously")
-//             //         textTwo = result;
-//             //         console.log(`This is TextOne${textOne}`);
-//             //         console.log(`This is TextOne${textTwo}`);
-//             //     })
-//             // }
-//         }
-//     })
+// function operatorRepeat() {
+//     textOne = textThree;
+//     textTwo = textFour;
+//     result = +textTwo + +textOne;
+//     currentNumberDisplay.textContent = result;
+//     currentNumberDisplay.style.marginTop = "70px";
+//     textTwo = result;
+//     textOne = "";
+//     console.log("--------Pressed Operator  [Second Layer]--------");
+//     console.log(`This is TextOne ${textOne}`);
+//     console.log(`This is TextTwo ${textTwo}`);
+//     console.log(`This is result ${result}`);
 // }
