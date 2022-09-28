@@ -22,6 +22,7 @@ let textTwo = "";
 let textThree = "";
 let textFour = "";
 let sign = "";
+let previousSign = "";
 let result = "";
 let resultTwo = "";
 
@@ -49,9 +50,6 @@ function numbButtonPressed() {
 
 
 let isSigned = false;
-
-
-// Fix Multi and divide
 function operatorButtonPressed() {
     for (let operators of operator) {
         operators.addEventListener("click", e => {
@@ -66,12 +64,9 @@ function operatorButtonPressed() {
                 // Clears After an operator is selected
                 textTwo = textOne;
                 textOne = "";
-                // Big Tweaks Needed
-
-
 
                 if (result === false && sign === "+", "-", "*", "/") {
-                    console.log(`Sign is :${sign}`);
+                    // console.log(`Sign is :${sign}`);
                     for (let numbs of numb) {
                         numbs.addEventListener("click", CalculatingWithoutEqual);
                     }
@@ -80,57 +75,113 @@ function operatorButtonPressed() {
         })
     }
 }
-
+// let resultPredefined= "";
 function CalculatingWithoutEqual() {
-    console.log(`---------------- Number for NotEqualButton  -------------------}`);
+    console.log(`  Number for NotEqualButton  `);
     textThree = textOne;
     textFour = textTwo;
-    console.log(`This is ContinuosResult ${resultTwo}`);
-    console.log(`This is TextThree ${textThree}`);
-    console.log(`This is TextFour ${textFour}`);
+
+    if (sign === "+") {
+        previousSign = sign;
+        console.log(resultTwo = +textFour + +textThree);
+    }
+    if (sign === "-") {
+        previousSign = sign;
+        console.log(resultTwo = +textFour - +textThree);
+    }
+    if (sign === "*") {
+        previousSign = sign;
+        console.log(resultTwo = +textFour * +textThree);
+    }
+    if (sign === "/") {
+        previousSign = sign;
+        console.log(resultTwo = +textFour / +textThree);
+    }
+
 
     for (let operators of operator) {
         operators.addEventListener("click", e => {
-            if (sign === "+") {
-                console.log(`---------------- Adding Without EqualButton -------------------}`);
-                resultTwo = +textFour + +textThree;
-                previousNumberDisplay.textContent = ` ${textFour} ${sign} ${textThree}`
-                currentNumberDisplay.textContent = resultTwo;
-                console.log(`This is ContinuosResult ${resultTwo}`);
+
+            // Calculating Adjacent Number
+            if (previousSign === sign) {
+                console.log("  previousSign === sign  ");
+                if (sign === "+") {
+                    console.log(`  Adjacent Adding Without EqualButton`);
+                    resultTwo = +textFour + +textThree;
+                    previousNumberDisplay.textContent = ` ${textFour} ${sign} ${textThree}`;
+                    currentNumberDisplay.textContent = resultTwo;
+                    console.log(`This is resultTwo ${resultTwo}`);
+                }
+                if (sign === "-") {
+                    console.log(`  Adjacent Subtracting Without EqualButton`);
+                    resultTwo = +textFour - +textThree;
+                    previousNumberDisplay.textContent = ` ${textFour} ${sign} ${textThree}`
+                    currentNumberDisplay.textContent = resultTwo;
+                    console.log(`This is resultTwo ${resultTwo}`);
+                }
+                if (sign === "*") {
+                    console.log(`  Adjacent Multiplying Without EqualButton`);
+                    resultTwo = +textFour * +textThree;
+                    previousNumberDisplay.textContent = ` ${textFour} ${sign} ${textThree}`
+                    currentNumberDisplay.textContent = resultTwo;
+                    console.log(`This is resultTwo ${resultTwo}`);
+                }
+                if (sign === "/") {
+                    console.log(`  Adjacent Dividing Without EqualButton `);
+                    resultTwo = +textFour / +textThree;
+                    previousNumberDisplay.textContent = ` ${textFour} ${sign} ${textThree}`
+                    currentNumberDisplay.textContent = resultTwo;
+                    console.log(`This is resultTwo ${resultTwo}`);
+                }
+
+                //  Adjacent Number Calculation Continuos
+                for (let operators of operator) {
+                    operators.addEventListener("click", e => {
+                        console.log(`-------------This is Continuos Result Inside Inside ${resultTwo}----------------`);
+                        textTwo = resultTwo;
+                        previousNumberDisplay.textContent = `${textTwo}  ${e.target.textContent}`;
+                        currentNumberDisplay.textContent = "";
+                        sign = e.target.textContent;
+                    })
+                }
             }
-            if (sign === "-") {
-                console.log(`---------------- Subtracting Without EqualButton -------------------}`);
-                resultTwo = +textFour - +textThree;
-                previousNumberDisplay.textContent = ` ${textFour} ${sign} ${textThree}`
-                currentNumberDisplay.textContent = resultTwo;
-                console.log(`This is ContinuosResult ${resultTwo}`);
-            }
-            if (sign === "*") {
-                console.log(`---------------- Multiplying Without EqualButton -------------------}`);
-                resultTwo = +textFour * +textThree;
-                previousNumberDisplay.textContent = ` ${textFour} ${sign} ${textThree}`
-                currentNumberDisplay.textContent = resultTwo;
-                console.log(`This is ContinuosResult ${resultTwo}`);
-            }
-            if (sign === "/") {
-                console.log(`---------------- Dividing Without EqualButton -------------------}`);
-                resultTwo = +textFour / +textThree;
-                previousNumberDisplay.textContent = ` ${textFour} ${sign} ${textThree}`
-                currentNumberDisplay.textContent = resultTwo;
-                console.log(`This is ContinuosResult ${resultTwo}`);
-            }
-            for (let operators of operator) {
-                operators.addEventListener("click", e => {
-                    console.log(`-------------This is Continuos Result Inside Inside ${resultTwo}----------------`);
-                    textTwo = resultTwo;
-                    previousNumberDisplay.textContent = `${textTwo}  ${e.target.textContent}`;
-                    currentNumberDisplay.textContent = "";
-                })
+
+
+            // if (resultTwo === false && previousSign !== sign) {
+            //  Diff Adjacent Number Calculation 
+            else {
+                console.log(`previousSign !== sign`);
+                // if (sign === "-", "+", "*", "/") {
+                // }
+                previousNumberDisplay.textContent = ` ${resultTwo} ${e.target.textContent}  `;
+                console.log(`This is else resultTwo ${resultTwo} `);
+                textTwo = resultTwo;
+
+                for (let numbs of numb) {
+                    numbs.addEventListener("click", e => {
+                        //    Diff Adjacent Number Calculating Continuos
+                        if (sign === "+") {
+                            resultTwo = +textTwo + +textOne;
+                            console.log("Diff Adjacent Result Adding Continuos");
+                        }
+                        if (sign === "-") {
+                            resultTwo = +textTwo - +textOne;
+                            console.log("Diff Adjacent Result Subtracting Continuos ");
+                        }
+                        if (sign === "*") {
+                            resultTwo = +textTwo * +textOne;
+                            console.log("Diff Adjacent Result Multiplying Continuos ");
+                        }
+                        if (sign === "/") {
+                            resultTwo = +textTwo / +textOne;
+                            console.log("Diff Adjacent Result Dividing Continuos ");
+                        }
+                    })
+                }
             }
         })
     }
 }
-
 
 
 function clearButton() {
@@ -175,22 +226,16 @@ function clearFunction() {
     isSigned = false;                                                       // enable to select a sign
 
     for (let operators of operator) {
-        operators.removeEventListener("click", addResultEventListener);     //disable the result to be summed when clear is pressed
+        operators.removeEventListener("click", continuousCalculatingResultEventListener);     //disable the result to be summed when clear is pressed
     }
 
     equalButton.disabled = true;
 
-    // console.log(`-----------Clear----------------`)
-    // console.log(`This is TextOne ${textOne}`)
-    // console.log(`This is TextTwo ${textTwo}`)
-    // console.log(`This is result ${result}`)
-    // console.log(`This is sign ${sign}`)
-
-    console.clear();
-    console.log(`This is TextOne ${textOne}`)
-    console.log(`This is TextTwo ${textTwo}`)
-    console.log(`This is result ${result}`)
-    console.log(`This is continuosResult ${sign}`)
+    // console.log(`----------- Clear----------------`)
+    // console.log(`This is TextOne ${ textOne } `)
+    // console.log(`This is TextTwo ${ textTwo } `)
+    // console.log(`This is result ${ result } `)
+    // console.log(`This is sign ${ sign } `)
 }
 
 function backspaceFunction() {
@@ -223,23 +268,9 @@ function equalButton() {
             divideNum();
         }
 
-        // if (continuosResult === true) {
-        //     if (sign === "+", "-", "*", "/") {
-        //         console.log(`222222222222222222Sign is :${sign}222222222222222222222222222222`);
-        //         for (let numbs of numb) {
-        //             numbs.addEventListener("click", CalculatingWithoutEqual);
-        //         }
-        //     }
-        // }
-
-
-        // AddingWithOutEqualButton
+        // ContinuousCalculating 
         for (let operators of operator) {
-            console.log(`---------------- Calculating with equalButton [Result + textOne] -------------------}`);
-            operators.addEventListener("click", addResultEventListener);
-            for (let numbs of numb) {
-                numbs.removeEventListener("click", CalculatingWithoutEqual);
-            }
+            operators.addEventListener("click", continuousCalculatingResultEventListener);
         }
 
         // Clear the result when a number is pressed
@@ -249,54 +280,50 @@ function equalButton() {
     })
 }
 
-function addResultEventListener() {
+function continuousCalculatingResultEventListener() {
+    console.log(`----------------Continuous Calculating[Result + textOne]-------------------} `);
     textTwo = result;
     previousNumberDisplay.textContent = ` ${textTwo} ${sign} `
     currentNumberDisplay.textContent = "";
-    // console.log(`This is TextOne ${textOne}`);
-    // console.log(`This is TextTwo ${textTwo}`);
-    // console.log(`This is result ${result}`);
-    // currentNumberDisplay.style.marginTop = "80px";                          // so current Number won't change position
-
+    currentNumberDisplay.style.marginTop = "80px";                          // so current Number won't change position
+    // for (let numbs of numb) {
+    //     numbs.removeEventListener("click", CalculatingWithoutEqual);
+    // }
 }
 
 function clearResultEventListener() {
+    console.log("-------- Clears the result when pressed on a number ---------");
     for (let operators of operator) {
-        operators.removeEventListener("click", addResultEventListener);
+        operators.removeEventListener("click", continuousCalculatingResultEventListener);
     }
     result = "";
     currentNumberDisplay.style.marginTop = "80px";                          // changed again after clearing
-
-    console.log("-------- Clears the result when pressed on a number ---------");
-    //     console.log(`This is TextOne ${textOne}`);
-    //     console.log(`This is TextTwo ${textTwo}`);
-    //     console.log(`This is result ${result}`);
-    //     console.log(`This is sign ${sign}`);
 }
+
 
 // ---------------------------Explaining Function-------------------------------------
 
 
 const addNum = function () {
-    console.log(`This is textOne ${textOne}`);
-    console.log(`This is textTwo ${textTwo}`);
+    // console.log(`This is textOne ${textOne} `);
+    // console.log(`This is textTwo ${textTwo} `);
     result = +textOne + +textTwo;                                                // +textTwo converts a string to a number
-    previousNumberDisplay.textContent = `${textTwo} + ${textOne}`;
+    previousNumberDisplay.textContent = `${textTwo} + ${textOne} `;
     currentNumberDisplay.textContent = result;
     currentNumberDisplay.style.marginTop = "80px";
     textOne = "";                                                               // erase the result value from text so that we can continuously add number
     textTwo = "";
-    console.log(`-------------Result-------------`);
-    console.log(`This is result  ${result}`);
-    console.log(`This is textOne ${textOne}`);
-    console.log(`This is textTwo ${textTwo}`);
-    console.log(`This is Sign ${sign}`);
+    // console.log(`------------- Result------------- `);
+    // console.log(`This is result  ${result} `);
+    // console.log(`This is textOne ${textOne} `);
+    // console.log(`This is textTwo ${textTwo} `);
+    // console.log(`This is Sign ${sign} `);
 }
 
 const subtractNum = function () {
     result = +textTwo - +textOne;
     // result = result.toFixed(9);
-    previousNumberDisplay.textContent = `${textTwo} - ${textOne}`
+    previousNumberDisplay.textContent = `${textTwo} - ${textOne} `
     currentNumberDisplay.textContent = result;
     currentNumberDisplay.style.marginTop = "80px";
     textOne = "";
@@ -305,7 +332,7 @@ const subtractNum = function () {
 
 const multipleNum = function () {
     result = +textOne * +textTwo;
-    previousNumberDisplay.textContent = `${textTwo} * ${textOne}`
+    previousNumberDisplay.textContent = `${textTwo} * ${textOne} `
     currentNumberDisplay.textContent = result;
     currentNumberDisplay.style.marginTop = "80px";
     textOne = "";
@@ -313,25 +340,25 @@ const multipleNum = function () {
 }
 
 const divideNum = function () {
-    console.log(`This is textOne ${textOne}`);
-    console.log(`This is textTwo ${textTwo}`);
-    if (textTwo / 0) {
-        previousNumberDisplay.textContent = `${textTwo} / ${textOne}`;
-        currentNumberDisplay.textContent = "Cannot divide by 0";
-        currentNumberDisplay.style.marginTop = "80px";
-        textOne = "";
-        textTwo = "";
-        console.log("Huh Are You About that?")
-    }
-    else {
-        // result = result.toFixed(9);
-        result = +textTwo / +textOne;
-        previousNumberDisplay.textContent = `${textTwo} / ${textOne}`;
-        currentNumberDisplay.textContent = result;
-        currentNumberDisplay.style.marginTop = "80px";
-        textOne = "";
-        textTwo = "";
-    }
+    console.log(`This is textOne ${textOne} `);
+    console.log(`This is textTwo ${textTwo} `);
+    // if (textTwo / 0) {
+    //     previousNumberDisplay.textContent = `${textTwo} / ${textOne}`;
+    //     currentNumberDisplay.textContent = "Cannot divide by 0";
+    //     currentNumberDisplay.style.marginTop = "80px";
+    //     textOne = "";
+    //     textTwo = "";
+    //     console.log("Cannot divide by 0")
+    // }
+    // else {
+    // result = result.toFixed(9);
+    result = +textTwo / +textOne;
+    previousNumberDisplay.textContent = `${textTwo} / ${textOne}`;
+    currentNumberDisplay.textContent = result;
+    currentNumberDisplay.style.marginTop = "80px";
+    textOne = "";
+    textTwo = "";
+    // }
 }
 
 const powerFunction = function () {
