@@ -1,4 +1,5 @@
 //  Successfully wasted 1-2 week for this logic
+//  Successfully wasted 1 month for this project
 //  The whole logic was that we did not need to store two different variable but make textOne = textTwo [through for loop, addEventListener ]
 //  I tried to make textTwo from current.textContent [Dump decision need to think more logically and create better problem solving skill]
 
@@ -25,6 +26,9 @@ let sign = "";
 let previousSign = "";
 let result = "";
 let resultTwo = "";
+let isSigned = false;
+let resultPredefined = "";
+
 
 
 numbButtonPressed();
@@ -37,49 +41,70 @@ equalButton();
 
 function numbButtonPressed() {
     for (let numbs of numb) {
-        numbs.addEventListener("click", e => {
-            if (textOne.length < 13) {
-                textOne += e.target.textContent;            // for writing number adjacent 
-                currentNumberDisplay.textContent = textOne;
-                isSigned = false;
-                // console.log(`This is TextOne ${textOne}`);
-            }
-        })
+        numbs.addEventListener("click", numbButtonPressedFunction)
     }
 }
 
+function numbButtonPressedFunction(e) {
+    if (textOne.length < 13) {
+        textOne += e.target.textContent;            // for writing number adjacent 
+        currentNumberDisplay.textContent = textOne;
+        isSigned = false;
+        console.log(`This is TextOne ${textOne}`);
+    }
+}
 
-let isSigned = false;
 function operatorButtonPressed() {
     for (let operators of operator) {
-        operators.addEventListener("click", e => {
-            if (!isSigned) {
-                isSigned = true;                                                        // disable selecting multiple sign
-                sign = e.target.textContent;
-                currentNumberDisplay.textContent += ` ${sign} `;
-                previousNumberDisplay.textContent = currentNumberDisplay.textContent;
-                currentNumberDisplay.textContent = "";                                  // clear the current number
-                currentNumberDisplay.style.marginTop = "70px";                          // so current Number won't change position
-
-                // Clears After an operator is selected
-                textTwo = textOne;
-                textOne = "";
-
-                if (result === false && sign === "+", "-", "*", "/") {
-                    // console.log(`Sign is :${sign}`);
-                    for (let numbs of numb) {
-                        numbs.addEventListener("click", CalculatingWithoutEqual);
-                    }
-                }
-            }
-        })
+        operators.addEventListener("click", operatorButtonPressedFunction)
     }
 }
-// let resultPredefined= "";
+
+function operatorButtonPressedFunction(e) {
+    console.log(`This is operatorButtonPressed `);
+
+    if (!isSigned) {
+        console.log(`This is isSigned`);
+
+        isSigned = true;                                                        // disable selecting multiple sign
+        sign = e.target.textContent;
+        currentNumberDisplay.textContent += ` ${sign} `;
+        previousNumberDisplay.textContent = currentNumberDisplay.textContent;
+        currentNumberDisplay.textContent = "";                                  // clear the current number
+        currentNumberDisplay.style.marginTop = "70px";                          // so current Number won't change position
+
+        // Clears After an operator is selected
+        textTwo = textOne;
+        textOne = "";
+        console.log(`----------TextTwo = textOne ${textTwo}--------------`)
+
+
+        // && !previousSign
+
+        if (!result && sign === "+", "-", "*", "/") {
+            console.log(`This is If Operator ${sign}`);
+            for (let numbs of numb) {
+                numbs.addEventListener("click", CalculatingWithoutEqual);
+            }
+        }
+        // else {
+        //     textTwo = textOne;
+        //     textOne = "";
+        // }
+    }
+}
+
+//fix clear button [ Seems like operator is not being cleared]
+
 function CalculatingWithoutEqual() {
     console.log(`  Number for NotEqualButton  `);
+    // previousSign = sign;
+
     textThree = textOne;
     textFour = textTwo;
+
+    console.log(`This is TextOne ${textOne}`)
+    console.log(`This is TextTwo ${textTwo}`)
 
     if (sign === "+") {
         previousSign = sign;
@@ -97,6 +122,8 @@ function CalculatingWithoutEqual() {
         previousSign = sign;
         console.log(resultTwo = +textFour / +textThree);
     }
+    console.log(`This is previousSign ${previousSign}`);
+    console.log(`This is sign ${sign}`);
 
 
     for (let operators of operator) {
@@ -146,8 +173,6 @@ function CalculatingWithoutEqual() {
                 }
             }
 
-
-            // if (resultTwo === false && previousSign !== sign) {
             //  Diff Adjacent Number Calculation 
             else {
                 console.log(`previousSign !== sign`);
@@ -183,6 +208,39 @@ function CalculatingWithoutEqual() {
     }
 }
 
+function clearFunction() {
+    window.location.reload();
+    console.clear();
+    // textOne = "";
+    // textTwo = "";
+    // textThree = "";
+    // textFour = "";
+    // sign = "";
+    // previousSign = "";
+    // result = "";
+    // resultTwo = "";
+    // isSigned = false;
+    // resultPredefined = "";
+
+    // currentNumberDisplay.textContent = 0;
+    // previousNumberDisplay.textContent = "";
+    // currentNumberDisplay.classList.remove("resultSize");
+    // currentNumberDisplay.style.marginTop = "95px";
+
+
+
+    // console.log(`----------- Clear----------------`)
+    // console.log(`This is TextOne ${textOne} `)
+    // console.log(`This is TextTwo ${textTwo} `)
+    // console.log(`This is result ${result} `)
+    // console.log(`This is sign ${sign} `)
+    // console.clear();
+
+    // for (let numbs of numb) {
+    //     numbs.removeEventListener("click", numbButtonPressedFunction)
+    // }
+
+}
 
 function clearButton() {
     clear.addEventListener("click", e => {
@@ -210,33 +268,7 @@ function flipSignButton() {
     })
 }
 
-function clearFunction() {
-    textOne = "";
-    textTwo = "";
-    textThree = "";
-    textFour = "";
-    sign = "";
-    result = "";
-    result = "";
 
-    currentNumberDisplay.textContent = 0;
-    previousNumberDisplay.textContent = "";
-    currentNumberDisplay.style.marginTop = "95px";
-    currentNumberDisplay.classList.remove("resultSize");
-    isSigned = false;                                                       // enable to select a sign
-
-    for (let operators of operator) {
-        operators.removeEventListener("click", continuousCalculatingResultEventListener);     //disable the result to be summed when clear is pressed
-    }
-
-    equalButton.disabled = true;
-
-    // console.log(`----------- Clear----------------`)
-    // console.log(`This is TextOne ${ textOne } `)
-    // console.log(`This is TextTwo ${ textTwo } `)
-    // console.log(`This is result ${ result } `)
-    // console.log(`This is sign ${ sign } `)
-}
 
 function backspaceFunction() {
     textOne = textOne.slice(0, -1);
@@ -252,32 +284,40 @@ function powerButton() {
 }
 
 function equalButton() {
-    equal.addEventListener("click", e => {
-        isSigned = false;
-        currentNumberDisplay.classList.add("resultSize");
-        if (sign === "+") {
-            addNum();
-        }
-        if (sign === "*") {
-            multipleNum();
-        }
-        if (sign === "-") {
-            subtractNum();
-        }
-        if (sign === "/") {
-            divideNum();
-        }
+    equal.addEventListener("click", equalFunction);
+}
 
-        // ContinuousCalculating 
-        for (let operators of operator) {
-            operators.addEventListener("click", continuousCalculatingResultEventListener);
-        }
+function equalFunction() {
+    isSigned = false;
+    currentNumberDisplay.classList.add("resultSize");
+    if (sign === "+") {
+        addNum();
+    }
+    if (sign === "*") {
+        multipleNum();
+    }
+    if (sign === "-") {
+        subtractNum();
+    }
+    if (sign === "/") {
+        divideNum();
+    }
 
-        // Clear the result when a number is pressed
-        for (let numbs of numb) {
-            numbs.addEventListener("click", clearResultEventListener);
-        }
-    })
+    // ContinuousCalculating 
+
+
+    console.log("hell nah");
+    for (let numbs of numb) {
+        numbs.addEventListener("click", clearResultEventListener);
+        // currentNumberDisplay.style.marginTop = "80px";
+
+    }
+    for (let operators of operator) {
+        operators.addEventListener("click", continuousCalculatingResultEventListener);
+        // currentNumberDisplay.style.marginTop = "95px";
+
+    }
+
 }
 
 function continuousCalculatingResultEventListener() {
@@ -285,7 +325,8 @@ function continuousCalculatingResultEventListener() {
     textTwo = result;
     previousNumberDisplay.textContent = ` ${textTwo} ${sign} `
     currentNumberDisplay.textContent = "";
-    currentNumberDisplay.style.marginTop = "80px";                          // so current Number won't change position
+
+    currentNumberDisplay.style.marginTop = "90px";                          // so current Number won't change position
     // for (let numbs of numb) {
     //     numbs.removeEventListener("click", CalculatingWithoutEqual);
     // }
@@ -297,6 +338,7 @@ function clearResultEventListener() {
         operators.removeEventListener("click", continuousCalculatingResultEventListener);
     }
     result = "";
+    // currentNumberDisplay.classList.remove("resultSize");
     currentNumberDisplay.style.marginTop = "80px";                          // changed again after clearing
 }
 
