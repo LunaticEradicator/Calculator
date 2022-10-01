@@ -1,12 +1,15 @@
 * {
     font-size: 50px;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    /* background-color: rgb(3, 0, 0); */
+    background-color: whitesmoke;
+    border-color: rgb(77, 40, 16) !important;
 }
 
 h1 {
+    font-size: 80px;
     margin: 20px;
-    color: darkblue;
+    color: rgb(65, 54, 54);
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 .main {
@@ -20,21 +23,11 @@ h1 {
 .content {
     width: 500px;
     padding: 10px;
-    border: 3px solid goldenrod;
+    border: 2px solid goldenrod !important;
     border-radius: 10px;
-    /* background-color: white !important; */
-
+    background-color: rgb(0, 0, 0);
+    box-shadow: 3px 3px 20px rgb(0, 0, 0);
 }
-
-/* .top {
-    background-color: white !important;
-}
-
-.bottom {
-    background-color: white !important;
-}
-
- */
 
 .sectionOne,
 .sectionTwo,
@@ -45,16 +38,12 @@ h1 {
     display: flex;
 }
 
-
-.sectionOne>div,
-.sectionTwo>div,
-.sectionThree>div,
-.sectionFour>div,
-.sectionFive>div,
-.sectionSix>div {
-    border: 1px solid goldenrod;
-    padding: 20px;
-    text-align: center;
+/* ------------------------Border Fixing -----------------------*/
+.bottom {
+    margin-top: 5px;
+    /* border: 2px solid goldenrod; */
+    border-right: none;
+    border-bottom: none;
 }
 
 .sectionOne>div,
@@ -62,9 +51,24 @@ h1 {
 .sectionThree>div,
 .sectionFour>div,
 .sectionSix>div {
+    padding: 20px;
+    text-align: center;
     flex-grow: 1;
     width: 43px;
-    /* border-radius: 20px; */
+    border-right: 2px solid goldenrod;
+    border-bottom: 2px solid goldenrod;
+}
+
+.top {
+    margin-top: 5px;
+    border: 2.5px solid rgb(228, 152, 1) !important;
+    border-radius: 5px;
+}
+
+.sectionFive>div {
+    padding: 20px;
+    text-align: center;
+    border-radius: 5px;
 }
 
 .display {
@@ -73,18 +77,13 @@ h1 {
     align-items: flex-end;
     width: 75%;
     padding: 0px !important;
-    background-color: rgb(231, 190, 190) !important;
+    background-color: rgb(255, 255, 255);
+    /* border-right: 2.5px solid rgb(228, 152, 1) !important; */
+    border-radius: 0px !important;
 }
 
-.top {
-    margin-top: 5px;
-    border: 1px solid goldenrod;
-}
 
-.bottom {
-    margin-top: 5px;
-    border: 1px solid goldenrod;
-}
+/* ------------------------Border Fixing -----------------------*/
 
 .clear {
     padding-left: 20px;
@@ -103,26 +102,52 @@ h1 {
 }
 
 .currentNumberDisplay {
-    padding-right: 5px;
-    margin-top: 95px;
+    margin-right: 5px;
+    margin-top: 62px;
+    /* background-color: rgb(255, 255, 255); */
+    /* background-color: rgb(27, 61, 90); */
 }
 
+/* button BackGround */
+sup,
 .operator,
 .clear,
-.equal {
-    background-color: silver;
+.equal,
+.powerSquare,
+.operator>button,
+.clear>button,
+.equal>button,
+.powerSquare>button {
+    background-color: rgb(128, 122, 122);
+    color: aliceblue;
 }
 
+.numb,
+.flipSign,
+.numb>button,
+.flipSign>button,
+.currentNumberDisplay,
+.previousNumberDisplay {
+    background-color: rgb(255, 255, 255);
+    color: rgba(204, 27, 27, 0.856);
+}
+
+.backspace,
+.backspaceImg {
+    background-color: black;
+}
+
+/* button BackGround */
+
 .backspace {
-    width: 83.25px;
+    width: 83px;
     display: flex;
     justify-content: center;
     align-items: center;
-
 }
 
 .backspaceImg {
-    width: 200px;
+    width: 100%;
     height: 100%;
     /* background-color: red; */
 }
@@ -137,17 +162,14 @@ button {
     background-color: white;
 }
 
-.operator>button,
-.clear>button,
-.equal>button,
-.powerSquare,
-.powerSquare>button,
-.percentage,
-.percentage>button {
-    border: none;
-    background-color: silver;
-}
+/* button:hover {
+    background-color: rebeccapurple; 
+}  */
 
 sup {
     font-size: 30px;
+}
+
+.sectionFive {
+    height: 120px;
 }

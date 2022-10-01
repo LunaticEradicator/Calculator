@@ -72,7 +72,7 @@ function operatorButtonPressedFunction(e) {
         currentNumberDisplay.textContent += ` ${sign} `;
         previousNumberDisplay.textContent = currentNumberDisplay.textContent;
         currentNumberDisplay.textContent = "";                                  // clear the current number
-        currentNumberDisplay.style.marginTop = "70px";                          // so current Number won't change position
+        currentNumberDisplay.style.marginTop = "31.5px";                          // so current Number won't change position
 
         // Clears After an operator is selected
 
@@ -277,7 +277,7 @@ function continuousCalculatingResultEventListener() {
     textTwo = result;
     previousNumberDisplay.textContent = ` ${textTwo} ${sign} `
     currentNumberDisplay.textContent = "";
-    currentNumberDisplay.style.marginTop = "90px";                                      // so current Number won't change position
+    currentNumberDisplay.style.marginTop = "62px";                                      // so current Number won't change position
 }
 
 function clearResultEventListener() {
@@ -286,7 +286,7 @@ function clearResultEventListener() {
         operators.removeEventListener("click", continuousCalculatingResultEventListener);
     }
     result = "";
-    currentNumberDisplay.style.marginTop = "80px";                                       // default it after clearing
+    currentNumberDisplay.style.marginTop = "48px";                                       // default it after clearing
 }
 
 function clearFunction() {
@@ -314,7 +314,7 @@ const addNum = function () {
     result = +textOne + +textTwo;                                                // +textTwo converts a string to a number
     previousNumberDisplay.textContent = `${textTwo} + ${textOne} `;
     currentNumberDisplay.textContent = result;
-    currentNumberDisplay.style.marginTop = "80px";
+    currentNumberDisplay.style.marginTop = "50px";
     textOne = "";                                                               // erase the result value from text so that we can continuously add number
     textTwo = "";
 }
@@ -323,7 +323,7 @@ const subtractNum = function () {
     result = +textTwo - +textOne;
     previousNumberDisplay.textContent = `${textTwo} - ${textOne} `
     currentNumberDisplay.textContent = result;
-    currentNumberDisplay.style.marginTop = "80px";
+    currentNumberDisplay.style.marginTop = "50px";
     textOne = "";
     textTwo = "";
 }
@@ -332,7 +332,7 @@ const multipleNum = function () {
     result = +textOne * +textTwo;
     previousNumberDisplay.textContent = `${textTwo} * ${textOne} `
     currentNumberDisplay.textContent = result;
-    currentNumberDisplay.style.marginTop = "80px";
+    currentNumberDisplay.style.marginTop = "50px";
     textOne = "";
     textTwo = "";
 }
@@ -343,7 +343,7 @@ const divideNum = function () {
     if (textOne === "0") {
         previousNumberDisplay.textContent = `${textTwo} / ${textOne}`;
         currentNumberDisplay.textContent = "Error";
-        currentNumberDisplay.style.marginTop = "80px";
+        currentNumberDisplay.style.marginTop = "50px";
         textOne = "";
         textTwo = "";
         console.log("Cannot divide by 0")
@@ -357,7 +357,7 @@ const divideNum = function () {
             result = result.toFixed(5);
             previousNumberDisplay.textContent = `${textTwo} / ${textOne}`;
             currentNumberDisplay.textContent = result;
-            currentNumberDisplay.style.marginTop = "80px";
+            currentNumberDisplay.style.marginTop = "50px";
             textOne = "";
             textTwo = "";
             console.log("round number");
@@ -365,7 +365,7 @@ const divideNum = function () {
         else {
             previousNumberDisplay.textContent = `${textTwo} / ${textOne}`;
             currentNumberDisplay.textContent = result;
-            currentNumberDisplay.style.marginTop = "80px";
+            currentNumberDisplay.style.marginTop = "50px";
             textOne = "";
             textTwo = "";
             console.log("normal number");
@@ -376,7 +376,7 @@ const divideNum = function () {
 }
 
 function percentageNum() {
-    currentNumberDisplay.style.marginTop = "70px";                          // so current Number won't change position
+    currentNumberDisplay.style.marginTop = "50px";                          // so current Number won't change position
     result = textTwo / 100 * textOne;
     previousNumberDisplay.textContent = `${textTwo} % ${textOne}`;
     currentNumberDisplay.textContent = result;
@@ -386,8 +386,7 @@ function percentageNum() {
 }
 
 const powerFunction = function () {
-    currentNumberDisplay.style.marginTop = "70px";                          // so current Number won't change position
-
+    currentNumberDisplay.style.marginTop = "35px";                          // so current Number won't change position
     if (resultTwo) {
         console.log("Else not hello");
         result = resultTwo * resultTwo;
@@ -395,10 +394,8 @@ const powerFunction = function () {
         previousNumberDisplay.textContent = `Sqr(${(resultTwo)})`;
         console.log(`Power Result Two${result}`);
     }
-
     else {
         result = textOne * textOne;
-        // textTwo = resultTwo;
         currentNumberDisplay.textContent = result;
         previousNumberDisplay.textContent = `Sqr(${(textOne)})`;
         console.log("well hello")
