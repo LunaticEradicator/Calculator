@@ -1,7 +1,7 @@
 * {
     font-size: 50px;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    background-color: whitesmoke;
+    background-color: rgb(192, 190, 190);
     border-color: rgb(77, 40, 16) !important;
 }
 
@@ -9,12 +9,12 @@ h1 {
     font-size: 80px;
     margin: 20px;
     color: rgb(65, 54, 54);
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    /* font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; */
+    font-family: 'Noto Sans Mono', monospace;
 }
 
 .main {
     display: flex;
-    /* border: 5px solid rgb(8, 2, 2); */
     flex-direction: column;
     align-items: center;
     padding: 10px;
@@ -25,8 +25,20 @@ h1 {
     padding: 10px;
     border: 2px solid goldenrod !important;
     border-radius: 10px;
-    background-color: rgb(0, 0, 0);
+    background-color: rgb(15, 0, 0);
     box-shadow: 3px 3px 20px rgb(0, 0, 0);
+}
+
+.previousNumberDisplay {
+    font-size: 22px;
+    padding-right: 5px;
+    display: flex;
+    flex-wrap: wrap-reverse;
+}
+
+.currentNumberDisplay {
+    margin-right: 5px;
+    margin-top: 62px;
 }
 
 .sectionOne,
@@ -38,10 +50,10 @@ h1 {
     display: flex;
 }
 
-/* ------------------------Border Fixing -----------------------*/
+/*Border Fixing --------------------------------------*/
+
 .bottom {
     margin-top: 5px;
-    /* border: 2px solid goldenrod; */
     border-right: none;
     border-bottom: none;
 }
@@ -65,6 +77,10 @@ h1 {
     border-radius: 5px;
 }
 
+.sectionFive {
+    height: 150px;
+}
+
 .sectionFive>div {
     padding: 20px;
     text-align: center;
@@ -78,37 +94,10 @@ h1 {
     width: 75%;
     padding: 0px !important;
     background-color: rgb(255, 255, 255);
-    /* border-right: 2.5px solid rgb(228, 152, 1) !important; */
     border-radius: 0px !important;
 }
 
-
-/* ------------------------Border Fixing -----------------------*/
-
-.clear {
-    padding-left: 20px;
-    padding-top: 5px;
-}
-
-.sectionFive {
-    height: 150px;
-}
-
-.previousNumberDisplay {
-    font-size: 22px;
-    padding-right: 5px;
-    display: flex;
-    flex-wrap: wrap-reverse;
-}
-
-.currentNumberDisplay {
-    margin-right: 5px;
-    margin-top: 62px;
-    /* background-color: rgb(255, 255, 255); */
-    /* background-color: rgb(27, 61, 90); */
-}
-
-/* button BackGround */
+/* Button Styling --------------------------------------*/
 sup,
 .operator,
 .clear,
@@ -132,24 +121,37 @@ sup,
     color: rgba(204, 27, 27, 0.856);
 }
 
-.backspace,
-.backspaceImg {
-    background-color: black;
+/* -------------------------------------------------- */
+sup {
+    font-size: 30px;
 }
 
-/* button BackGround */
+.sectionFive {
+    height: 120px;
+}
+
+.clear {
+    padding-left: 20px;
+    padding-top: 5px;
+}
+
+.backspace,
+.backspaceImg {
+    background-color: rgb(15, 0, 0);
+}
 
 .backspace {
     width: 83px;
     display: flex;
     justify-content: center;
     align-items: center;
+    transition: background-color 0.5s;
 }
 
 .backspaceImg {
     width: 100%;
     height: 100%;
-    /* background-color: red; */
+    transition: background-color 0.5s;
 }
 
 .resultSize {
@@ -162,14 +164,48 @@ button {
     background-color: white;
 }
 
-/* button:hover {
-    background-color: rebeccapurple; 
-}  */
-
-sup {
-    font-size: 30px;
+.bottom,
+.backspace * {
+    cursor: pointer;
 }
 
-.sectionFive {
-    height: 120px;
+/* Hover and Transition --------------------------------------*/
+.numb:hover,
+.flipSign:hover {
+    background-color: black;
+    opacity: 80%;
+    transition: background-color 0.25s;
+}
+
+.numb:active,
+.flipSign:active {
+    background-color: rgb(238, 192, 150);
+    opacity: 20%;
+    transition: background-color 0.05s;
+}
+
+.operator:hover,
+.equal:hover,
+.clear:hover,
+.sectionSix>.powerSquare:hover,
+.sectionSix>.powerSquare:hover * {
+    background-color: whitesmoke;
+    transition: background-color 0.25s;
+    color: black;
+}
+
+.operator:active,
+.equal:active,
+.clear:active,
+.sectionSix>.powerSquare:active,
+.sectionSix>.powerSquare:active * {
+    background-color: rgb(238, 192, 150);
+    opacity: 20%;
+    transition: background-color 0.25s;
+}
+
+.backspace:active *,
+.backspace:active {
+    background-color: whitesmoke;
+    transition: ease-out;
 }
